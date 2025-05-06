@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma'lumotlar jadvali</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/create.css' %}">
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <video autoplay muted loop class="bg-video">
+            <source src="{% static 'img/main.mp4' %}" type="video/mp4">
+            <source src="{% static 'img/main.mp4' %}" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Sidebar -->
+        {% include "__navbar.html" %}
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            {% include "__header.html" %}
+            
+            <!-- Content -->
+            <div class="content-box">
+                <!-- Xabarlar -->
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                
+                <!-- Filtrlash -->
+                <div class="filter-container">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Filtrlash</h2>
+                    <form method="get" id="filterForm">
+                        <div class="grid">
+                            <!-- Jinoyat turi -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Jinoyat turi</label>
+                                <select name="jinoyat" id="crimeFilter" class="filter-input">
+                                    <option value="">Barchasi</option>
+                                    {% for jinoyat in jinoyats %}
+                                        <option value="{{ jinoyat.title }}" {% if request.GET.jinoyat == jinoyat.title %}selected{% endif %}>{{ jinoyat.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <!-- Qaysi bankka tegishli -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Qaysi bankka tegishli</label>
+                                <select name="bank" id="bankFilter" class="filter-input">
+                                    <option value="">Barchasi</option>
+                                    {% for bank in banks %}
+                                        <option value="{{ bank.title }}" {% if request.GET.bank == bank.title %}selected{% endif %}>{{ bank.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <!-- Mobil ilova -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Mobil ilova</label>
+                                <select name="ilova" id="appFilter" class="filter-input">
+                                    <option value="">Barchasi</option>
+                                    {% for ilova in ilovas %}
+                                        <option value="{{ ilova.title }}" {% if request.GET.ilova == ilova.title %}selected{% endif %}>{{ ilova.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <!-- Hudud -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Hudud</label>
+                                <select name="ilova" id="appFilter" class="filter-input">
+                                    <option value="">Barchasi</option>
+                                    {% for item in Hududs %}
+                                        <option value="{{ item.title }}" {% if request.GET.item == item.title %}selected{% endif %}>{{ item.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <!-- Jobs -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Kasbi</label>
+                                <select name="ilova" id="appFilter" class="filter-input">
+                                    <option value="">Barchasi</option>
+                                    {% for item in jobs %}
+                                        <option value="{{ item.title }}" {% if request.GET.item == item.title %}selected{% endif %}>{{ item.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                            <!-- Sana bo‘yicha (oralig‘i) -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Boshlang‘ich sana</label>
+                                <input type="date" name="start_date" id="startDateFilter" class="filter-input" value="{{ request.GET.start_date }}">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tugash sanasi</label>
+                                <input type="date" name="end_date" id="endDateFilter" class="filter-input" value="{{ request.GET.end_date }}">
+                            </div>
+                        </div>
+                        <!-- Filtrlash va Tozalash tugmalari -->
+                        <div class="mt-4">
+                            <button type="submit" id="applyFilter" class="btn btn-primary">Filtrlash</button>
+                            <a href="{% url 'main:table' %}" id="clearFilter" class="btn btn-secondary">Tozalash</a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Jadval -->
+                <div class="table-container">
+                    <table id="dataTable" class="min-w-full border-collapse">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Sana</th>
+                                <th>Tashkilot</th>
+                                <th>Hudud</th>
+                                <th>F.I.SH</th>
+                                <th>Manzil</th>
+                                <th>Kasb</th>
+                                <th>Telefon</th>
+                                <th>Holat mazmuni</th>
+                                <th>Murojaat turi</th>
+                                <th>Bank karta raqami</th>
+                                <th>Bank nomi</th>
+                                <th>Mobil ilova</th>
+                                <th>Sodir etish usuli</th>
+                                <th>Sodir bo'lgan vaqt</th>
+                                <th>Zarar</th>
+                                <th>Yuklangan fayl</th>
+                                <th>Natija</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data %}
+                            <tr class="border-b">
+                                <td>{{ row.id }}</td>
+                                <td>{{ row.data|date:"d.m.Y" }}</td>
+                                <td>{{ row.tashkilot.title }}</td>
+                                <td>{{ row.hudud.title }}</td>
+                                <td>{{ row.number }}</td>
+                                <td>{{ row.name }}</td>
+                                <td>{{ row.manzil }}</td>
+                                <td>{{ row.tell|default:"—" }}</td>
+                                <td>{{ row.holat_mazmuni|default:"—" }}</td>
+                                <td>{{ row.jinoyat.title }}</td>
+                                <td>{{ row.karta_number|default:"—" }}</td>
+                                <td>{{ row.bank.title }}</td>
+                                <td>{{ row.ilova.title }}</td>
+                                <td>{{ row.xitr.title }}</td>
+                                <td>{{ row.zarar }}</td>
+                                <td>{{ row.pul_data }}</td>
+                                <td>{{ row.jobs }}</td>
+                                <td>{{ row.natija.title }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="18" class="p-3 text-center text-sm text-gray-600">Ma'lumotlar mavjud emas</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="text-center mt-4">
+                    <a href="{% url 'main:index' %}" class="close_btn">Orqaga</a>
+                    <a href="{% url 'main:table' %}?export=excel" class="exell-btn" id="exportExcel">Excel sifatida yuklab olish</a>
+                </div>
+
+
+                <!-- Paginatsiya -->
+                <div class="pagination">
+                    {% if data.has_previous %}
+                        <a href="?page={{ data.previous_page_number }}{% if request.GET.jinoyat %}&jinoyat={{ request.GET.jinoyat|urlencode }}{% endif %}{% if request.GET.bank %}&bank={{ request.GET.bank|urlencode }}{% endif %}{% if request.GET.ilova %}&ilova={{ request.GET.ilova|urlencode }}{% endif %}{% if request.GET.start_date %}&start_date={{ request.GET.start_date }}{% endif %}{% if request.GET.end_date %}&end_date={{ request.GET.end_date }}{% endif %}">Oldingi</a>
+                    {% endif %}
+                    <span>Sahifa {{ data.number }} / {{ data.paginator.num_pages }}</span>
+                    {% if data.has_next %}
+                        <a href="?page={{ data.next_page_number }}{% if request.GET.jinoyat %}&jinoyat={{ request.GET.jinoyat|urlencode }}{% endif %}{% if request.GET.bank %}&bank={{ request.GET.bank|urlencode }}{% endif %}{% if request.GET.ilova %}&ilova={{ request.GET.ilova|urlencode }}{% endif %}{% if request.GET.start_date %}&start_date={{ request.GET.start_date }}{% endif %}{% if request.GET.end_date %}&end_date={{ request.GET.end_date }}{% endif %}">Keyingi</a>
+                    {% endif %}
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('applyFilter').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('filterForm').submit();
+                });
+
+                document.getElementById('clearFilter').addEventListener('click', function() {
+                    window.location.href = '/main/table/';
+                });
+            });
+    </script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

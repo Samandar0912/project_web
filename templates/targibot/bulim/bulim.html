@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinoyat tafsilotlari</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/create.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <video autoplay muted loop class="bg-video">
+            <source src="{% static 'img/main.mp4' %}" type="video/mp4">
+            <source src="{% static 'img/main.mp4' %}" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Sidebar -->
+        {% include "__navbar.html" %}
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            {% include "__header.html" %}
+            
+            <!-- Content -->
+            <div class="content-box">
+                <div class="table-container">
+                    <h1 class="text-h1">Targ'ibot Cyber bo'limi tomonidan qilingan </h1>
+                    <div class="block-top">
+                        <h2 class="text-h2">Bo'lim Targ'iboti </h2>
+                        <a href="{% url 'main:targibot-bulim_create' %}" class="btn btn-primary">Kiritish</a>
+                    </div>
+       
+                {% comment %} <!-- Filtrlash formasi -->
+                    <form method="get" class="filter-form">
+                        <div class="form-group">
+                            <label for="category_filter">Modda tanlash:</label>
+                            <select name="category" id="category_filter" class="form-control">
+                                <option value="">Barcha Moddalar</option>
+                                {% for cat in categories %}
+                                    <option value="{{ cat.id }}" {% if category_filter == cat.id|stringformat:"s" %}selected{% endif %}>{{ cat.title  }}{% if cat.sup %}<sup>^{{ cat.sup }}</sup>{% endif %} - modda</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="hudud_filter">Hudud bo'yicha:</label>
+                            <select name="hudud" id="hudud_filter" class="form-control">
+                                <option value="">Barcha Sana tanlash:</option>
+                                {% for hud in hududs %}
+                                    <option value="{{ hud.id }}" {% if hudud_filter == hud.id|stringformat:"s" %}selected{% endif %}>{{ hud.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="data_filter">Sana tanlash:</label>
+                            <input type="date" name="data" id="data_filter" value="{{ data_filter }}" class="form-control">
+                        </div>
+                        <div class="form-group-1">
+                            <button type="submit" class="btn btn-success btn-3">Filtrlash</button>
+                            <a href="{% url 'main:FEJ_list' %}"  class="btn btn-secondary btn-2">Tozalash</a>
+                        </div>
+                    </form>
+                {% endcomment %}
+
+
+                    <table id="dataTable" class="min-w-full border-collapse">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ism</th>
+                                <th>Hudud</th>
+                                <th>Sana</th>
+                                <th>Fayl</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for article_item in targibot %}
+                                <tr class="border-b">
+                                    <td>{{ article_item.id }}</td>
+                                    <td>{{ article_item.category.title }}</td>
+                                    <td>{{ article_item.hudud }}</td>
+                                    <td>{{ article_item.data }}</td>
+                                    <td>
+                                        {% if article_item.files %}
+                                            <a href="{{ article_item.files.url }}" target="_blank">Yuklab olish</a>
+                                        {% else %}
+                                            Fayl yo‘q
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="5" class="p-3 text-center text-sm text-gray-600">Ma'lumotlar mavjud emas</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    <!-- Paginatsiya -->
+                    
+
+
+                    <div class="pagination">
+                        {% if article.has_previous %}
+                            <a href="?page={{ article.previous_page_number }}">Oldingi</a>
+                        {% endif %}
+                        <span>Sahifa {{ article.number }} / {{ article.paginator.num_pages }}</span>
+                        {% if article.has_next %}
+                            <a href="?page={{ article.next_page_number }}">Keyingi</a>
+                        {% endif %}
+                    </div>
+                    
+                    <a href="{% url 'main:index' %}" class="btn btn-secondary">Orqaga</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

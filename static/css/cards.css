@@ -1,0 +1,432 @@
+.card-grid, .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    text-decoration: none;
+    background-color: #9ca3af49; 
+    width: 200px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background-color: #6b7280; /* darker on hover */
+    }
+
+.card-title {
+    font-weight: bold;
+    color: white;
+    margin: 15px;
+}
+
+.text-h1{
+  background: #9ca3af49;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 27px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+
+
+.content-box-detail_in{
+  flex: 1;
+  padding: 20px;
+  height: 100%;
+  background: #181a25e6;
+  overflow-y: scroll;
+}
+
+
+.user-info{
+  margin-top: 30px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-info .user-info-left{
+  margin-right: 20px;
+  margin-bottom: 10px;
+  width: 220px;
+  border-radius: 10px;
+}
+.user-info .user-info-left img{
+  width: 220px;
+  height: 245px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.user-info-right{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* width:70%; */
+  height: auto;
+}
+
+.user-info .r-mr{
+  margin-right: 20px;
+  width: 600px;
+}
+.user-info .r-mr-2{
+  width: 600px;
+}
+
+.user-info-right .user-name-info{
+  background: #9ca3af49;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.user-info-right .user-name-info p:first-child{
+  margin-right: 50px;
+  width: 150px;
+}
+
+.user-info-text{
+  border-radius: 10px;
+  padding: 15px;
+  background: #9ca3af49;
+
+}
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+
+.custom-file {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 45px;
+  margin-bottom: 1rem;
+}
+
+.custom-file input[type="file"] {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.custom-file-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 15px;
+  line-height: 1.5;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  color: #495057;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.custom-file-label::after {
+  content: "Fayl tanlash";
+  background-color: #e9ecef;
+  border-left: 1px solid #ced4da;
+  padding: 8px 12px;
+  border-radius: 0 5px 5px 0;
+  font-weight: 500;
+}
+
+
+/* 
+                <div class="form-group">
+                    <div class="custom-file">
+                      <input type="file" id="customFile" onchange="updateLabel()">
+                      <label class="custom-file-label" id="fileLabel">Fayl tanlanmagan</label>
+                    </div>
+                </div>
+*/
+
+
+
+
+
+
+
+
+
+
+#dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1a202c; /* Dark background for the table */
+  color: #fff;
+}
+
+#dataTable thead tr {
+  background-color: #2d3748; /* Slightly lighter dark for header */
+}
+
+#dataTable th {
+  padding: 0.5rem;
+  font-size: 14px !important;
+  font-weight: normal !important;
+  text-align: start;
+  border-bottom: 1px solid #4a5568;
+}
+
+#dataTable tbody tr {
+  border-bottom: 1px solid #4a5568;
+}
+
+#dataTable tbody tr:nth-child(even) {
+  background-color: #2d3748;
+}
+
+#dataTable td {
+  font-size: 14px !important;
+  padding: 0.75rem;
+  color: #d1d5db;
+}
+
+#dataTable tbody tr:hover {
+  background-color: #4a5568; /* Hover effect */
+}
+
+/* Links at the bottom */
+.text-center {
+  margin: 30px;
+}
+
+
+.grid{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter-input{
+  width: 250px !important;
+}
+
+
+
+/* static/css/table.css */
+.btn {
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+}
+
+.btn-success {
+  background-color: #37774c;
+  color: white;
+  border: none;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.pagination a, .pagination span {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-decoration: none;
+  border: none;
+  background-color: #4a5568;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.pagination a:hover {
+  background-color: #2d3748;
+}
+.pagination span {
+  background-color: #2d3748;
+  color: #fff;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  width: 700px;
+  min-width: 350px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff;
+}
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background: #6c757d;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px #007bff4d;
+}
+.form-control::placeholder {
+  color: #fff;
+  opacity: 0.8;
+}
+.form-control[type="date"] {
+  cursor: pointer;
+}
+.form-control[type="file"] {
+  padding: 5px;
+  line-height: 1.5;
+}
+.btn-primary {
+  width: 200px;
+  height: 40px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border: 1px solid #f5c6cb;
+}
+.alert-danger ul {
+  margin: 0;
+  padding: 0 0 0 20px;
+  list-style-type: disc;
+}
+/* Forma xatolari uchun maxsus uslub */
+.errorlist {
+  color: #721c24;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.text-h2{
+  margin: 20px 0;
+  text-align: center;
+
+}
+td a{
+  color: #4fd6a2;
+}
+
+.block-top{
+  display: flex;
+  justify-content: space-between;
+}
+.block-top a{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 50px;
+  width: 200px;
+  margin: 10px;
+}
+
+.form-group-2{
+  display: flex;
+}
+
+.btn-2, .btn-3{
+  display: block;
+  width: 150px !important;
+  height: 40px !important;
+  font-size: 16px !important;
+  text-align: center;
+  margin: 0 10px;
+  padding: 10px;
+  transition: all .3s ease;
+}
+.btn-2:hover{
+  transition: all .3s ease;
+  background: #495057;
+}
+.btn-3:hover{
+  transition: all .3s ease;
+  background: #244b31;
+}
+
+.filter-form{
+  display: flex;
+  justify-content: flex-start;
+}
+.filter-form .form-group {
+  width: 200px !important;
+}
+.filter-form .form-group-1 {
+  width: 250px !important;
+  display: flex;
+  align-items: center;
+}
+.filter-form .form-group-1 button {
+  width: 200px !important;
+  margin-right: 5px !important;
+  padding: 0 !important;
+}

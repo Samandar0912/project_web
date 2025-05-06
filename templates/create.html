@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma'lumot kiritish</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/create.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <video autoplay muted loop class="bg-video">
+            <source src="{% static 'img/main.mp4' %}" type="video/mp4">
+            <source src="{% static 'img/main.mp4' %}" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Sidebar -->
+        {% include "__navbar.html" %}
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            {% include "__header.html" %}
+
+            <!-- Content -->
+            <div class="content-box">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+
+
+                    <!-- 1. Xabar qabul qilgan tashkilot -->
+                    <div class="input-box">
+                        <label for="{{ form.tashkilot.id_for_label }}">{{ form.tashkilot.label }}</label>
+                        {{ form.tashkilot }}
+                        {% if form.tashkilot.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.tashkilot.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 2. Sana -->
+                    <div class="input-box">
+                        <label for="{{ form.data.id_for_label }}">{{ form.data.label }}</label>
+                        {{ form.data }}
+                        {% if form.data.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.data.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    
+
+                    <!-- 3. Xabar tushgan hudud -->
+                    <div class="input-box">
+                        <label for="{{ form.hudud.id_for_label }}">{{ form.hudud.label }}</label>
+                        {{ form.hudud }}
+                        {% if form.hudud.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.hudud.errors }}</span>
+                        {% endif %}
+                    </div>
+
+        
+
+                    <!-- 5. Murojaat muallifi -->
+                    <div class="input-box">
+                        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.name.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 6. Joyi -->
+                    <div class="input-box">
+                        <label for="{{ form.manzil.id_for_label }}">{{ form.manzil.label }}</label>
+                        {{ form.manzil }}
+                        {% if form.manzil.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.manzil.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 7. jobs -->
+                    <div class="input-box">
+                        <label for="{{ form.jobs.id_for_label }}">{{ form.jobs.label }}</label>
+                        {{ form.jobs }}
+                        {% if form.jobs.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.jobs.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 7. Telefon -->
+                    <div class="input-box">
+                        <label for="{{ form.tell.id_for_label }}">{{ form.tell.label }}</label>
+                        {{ form.tell }}
+                        {% if form.tell.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.tell.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 8. Holatning qisqacha mazmuni -->
+                    <div class="input-box">
+                        <label for="{{ form.holat_mazmuni.id_for_label }}">{{ form.holat_mazmuni.label }}</label>
+                        {{ form.holat_mazmuni }}
+                        {% if form.holat_mazmuni.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.holat_mazmuni.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 9. Jinoyat turi -->
+                    <div class="input-box">
+                        <label for="{{ form.jinoyat.id_for_label }}">{{ form.jinoyat.label }}</label>
+                        {{ form.jinoyat }}
+                        {% if form.jinoyat.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.jinoyat.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 10. Pul yechilgan bank kartalar -->
+                    <div class="input-box">
+                        <label for="{{ form.karta_number.id_for_label }}">{{ form.karta_number.label }}</label>
+                        {{ form.karta_number }}
+                        {% if form.karta_number.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.karta_number.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 11. Qaysi bankka tegishli -->
+                    <div class="input-box">
+                        <label for="{{ form.bank.id_for_label }}">{{ form.bank.label }}</label>
+                        {{ form.bank }}
+                        {% if form.bank.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.bank.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 12. Mobil ilova -->
+                    <div class="input-box">
+                        <label for="{{ form.ilova.id_for_label }}">{{ form.ilova.label }}</label>
+                        {{ form.ilova }}
+                        {% if form.ilova.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.ilova.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 13. Sodir etish usuli -->
+                    <div class="input-box">
+                        <label for="{{ form.xitr.id_for_label }}">{{ form.xitr.label }}</label>
+                        {{ form.xitr }}
+                        {% if form.xitr.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.xitr.errors }}</span>
+                        {% endif %}
+                    </div>
+
+  
+                        <!-- 15. Sana -->
+                        <div class="input-box">
+                        <label for="{{ form.pul_data.id_for_label }}">{{ form.pul_data.label }}</label>
+                        {{ form.pul_data }}
+                        {% if form.pul_data.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.pul_data.errors }}</span>
+                        {% endif %}
+                    </div>
+  
+                    
+                    <!-- 14. Moddiy zarar miqdori -->
+                    <div class="input-box">
+                        <label for="{{ form.zarar.id_for_label }}">{{ form.zarar.label }}</label>
+                        {{ form.zarar }}
+                        {% if form.zarar.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.zarar.errors }}</span>
+                        {% endif %}
+                    </div>
+    
+                    
+                
+                    
+                    
+                    <!-- 16. files -->
+                    <div class="input-box">
+                        <label for="{{ form.files.id_for_label }}">{{ form.files.label }}</label>
+                        <button class="btn-files">
+                            <label for="{{ form.files.id_for_label }}">Murojaat Yuzasidan toplangan hujjatlarni PDF faylini kiriting</label>
+                        </button>
+                        {{ form.files }}
+                        {% if form.files.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.files.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    
+                
+                    
+                    <!-- 16. Natija -->
+                    <div class="input-box">
+                        <label for="{{ form.natija.id_for_label }}">{{ form.natija.label }}</label>
+                        {{ form.natija }}
+                        {% if form.natija.errors %}
+                            <span class="error text-red-500 text-sm mt-1">{{ form.natija.errors }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="input-box-btn">
+                        <button type="submit" class="btn-submit">Saqlash</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

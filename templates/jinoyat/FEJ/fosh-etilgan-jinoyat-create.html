@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinoyat tafsilotlari</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/create.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <video autoplay muted loop class="bg-video">
+            <source src="{% static 'img/main.mp4' %}" type="video/mp4">
+            <source src="{% static 'img/main.mp4' %}" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Sidebar -->
+        {% include "__navbar.html" %}
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            {% include "__header.html" %}
+            
+            <!-- Content -->
+            <div class="content-box">
+                <div class="table-container">
+                    <h1 class="text-h1">Fosh-etilgan jinoyatlarni Aniqlash</h1>
+                    <h2 class="text-h2">Malumot Kiritish </h2>
+                    <!-- Table of Related AJ_article Objects -->
+
+                    <form method="post" class="form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <li>{{ field.label }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="{{ form.category.id_for_label }}">Kategoriya</label>
+                            {{ form.category }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.hudud.id_for_label }}">Hudud</label>
+                            {{ form.hudud }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.data.id_for_label }}">Sana</label>
+                            {{ form.data }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.files.id_for_label }}">Fayllar</label>
+                            {{ form.files }}
+                        </div>
+                        <div class="form-group form-group-2">
+                            <button type="submit" class="btn btn-success btn-3">Saqlash</button>
+                            <a href="{% url 'main:jinoyat_list' %}" class="btn btn-secondary btn-2">Orqaga</a>
+                        </div>
+                    </form>
+                    
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

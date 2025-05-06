@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <video autoplay muted loop class="bg-video">
+        <source src="{% static 'img/cyber.mp4' %}" type="video/mp4">
+    </video>
+    <audio autoplay loop class="bg-audio">
+        <source src="{% static 'img/cyber.mp3' %}" type="audio/mpeg">
+    </audio>    
+        
+    <div class="form-container">
+        <h1 class="text-3xl font-bold  mb-8 text-center h1-text">CYBINT - <span class="text-color">JIZZAX</span><br> platformasi</h1>
+
+        <!-- Xatolik xabarlari -->
+        {% if error %}
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+
+        <!-- Login formasi -->
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Foydalanuvchi nomi -->
+            <div class='input-box'>
+                <label for="username" class="login">Foydalanuvchi nomi</label>
+                <input type="text" name="username" id="username"  required>
+            </div>
+
+            <!-- Parol -->
+            <div class='input-box'>
+                <label for="password" class="pass">Parol</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+
+            <!-- Yuborish tugmasi -->
+            <div>
+                <button type="submit" class="submit-btn">Kirish</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('click', function() {
+            document.querySelector('.bg-audio').play();
+        });
+    </script>
+</body>
+</html>

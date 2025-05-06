@@ -1,0 +1,133 @@
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 0;
+}
+.form-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+.input-field, select, textarea {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+}
+.input-field:focus, select:focus, textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+label {
+    font-weight: 500;
+    color: #374151;
+}
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.75rem;
+}
+.submit-btn {
+    background: #3b82f6;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+.submit-btn:hover {
+    background: #2563eb;
+}
+.navbar {
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+.navbar-menu {
+    display: flex;
+    gap: 2rem;
+}
+.navbar-item {
+    color: #4b5563;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.navbar-item:hover {
+    color: #3b82f6;
+}
+.navbar-toggle {
+    display: none;
+}
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        padding: 1rem;
+        background: #ffffff;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-menu.active {
+        display: flex;
+    }
+    .navbar-toggle {
+        display: block;
+        cursor: pointer;
+    }
+}
+
+.cards ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cards ul li{
+    list-style: none;
+}
+.cards ul li a{
+    display: block;
+    background: #1f2937;
+    padding: 20px 30px;
+    margin: 10px;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.back{
+    margin: 0 10px;
+    background: #b32e2e;
+    color: #ffffff;
+    padding: 11px 20px;
+    border-radius: 4px;
+    transition: all .2s;
+    text-decoration: none;
+}
+.back:hover{
+    background: #832222;
+    transition: all .2s;
+}

@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma'lumotlar jadvali</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/create.css' %}">
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <video autoplay muted loop class="bg-video">
+            <source src="{% static 'img/main.mp4' %}" type="video/mp4">
+            <source src="{% static 'img/main.mp4' %}" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Sidebar -->
+        {% include "__navbar.html" %}
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            {% include "__header.html" %}
+            
+            <!-- Content -->
+            <div class="content-box-detail_in">     
+                <h1 class="text-h1">Jinoyatlarni Aniqlash va Fosh Etish</h1>
+                <div class="user-info">
+                    <div class="user-info-left">
+                        <img src="{% static 'img/user.jpg' %}" alt="img">
+                    </div>
+                    <div class="user-info-right r-mr">
+                        <div class="user-name-info">
+                            <p>F.I.SH</p>
+                            <p>Samandar Nazarov Eshim O'g'li</p>
+                        </div>
+                        <div class="user-name-info">
+                            <p>Hudud</p>
+                            <p>Jizzax viloyati Do'slik tumani</p>
+                        </div>
+                        <div class="user-name-info">
+                            <p>Sana</p>
+                            <p>2025.04.22</p>
+                        </div>
+                        <div class="user-name-info">
+                            <p>Kasbi</p>
+                            <p>Dsasturchi</p>
+                        </div>
+                        <div class="user-name-info">
+                            <p>Tell:</p>
+                            <p>+998 90 538 78 69</p>
+                        </div>
+                   
+                    </div>       
+                    <div class="user-info-right r-mr-2">
+                        <div class="user-name-info">
+                            <p>Murojaat turi</p>
+                            <p>Xaqorat qilish</p>
+                        </div>
+                    
+                        <div class="user-name-info">
+                            <p>Tahskilot</p>
+                            <p>Jizzax shaxar</p>
+                        </div>
+                        <div class="user-name-info">
+                            <p>Natija holati</p>
+                            <p>Tergovga qadar tekshiruvda</p>
+                        </div>
+                        <div class="user-name-info">
+                            <p>Tell:</p>
+                            <p>xxx</p>
+                        </div>
+                        <div class="user-name-info">
+                            <p>Murojaat turi</p>
+                            <p>xxx</p>
+                        </div>
+                    </div>       
+                </div>
+
+                <div class="user-info-text">
+                    <h3>Umumiy malumotlar</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus voluptatum iure quisquam suscipit, temporibus sit mollitia eaque quibusdam saepe quidem ratione illum. Voluptates sapiente iste voluptatibus dignissimos deleniti maiores. Expedita!</p>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function updateLabel() {
+          const input = document.getElementById("customFile");
+          const label = document.getElementById("fileLabel");
+      
+          if (input.files.length > 0) {
+            label.innerHTML = input.files[0].name;
+          } else {
+            label.innerHTML = "Fayl tanlanmagan";
+          }
+        }
+      </script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
