@@ -12,7 +12,7 @@ from myapp.models import *
 from myapp.forms import *
 from django.http import HttpResponseBadRequest
 import logging
-
+import json
 
 
 logger = logging.getLogger(__name__)
@@ -613,3 +613,19 @@ class targibot_boshqa_Create_View(View):
 
     def http_method_not_allowed(self, request, *args, **kwargs):
         return HttpResponseBadRequest("Faqat GET va POST so'rovlari qo'llab-quvvatlanadi.")
+
+
+
+
+
+class StatistikaView(View):
+    template_name = 'statistika/statistika.html'
+
+    def get(self, request, *args, **kwargs):
+        context = {
+            'title': 'Statistika Sahifasi',
+            'labels': json.dumps(["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun"]),
+            'data': json.dumps([120, 190, 300, 500, 200, 350])
+        }
+        return render(request, self.template_name, context)
+            

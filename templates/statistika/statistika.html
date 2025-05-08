@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistika Sahifasi</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        /* Grafik uchun CSS */
+        .chart-container {
+            width: 100%;
+            border-radius: 10px;
+        }
+        canvas#myChart {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <video autoplay muted loop class="bg-video">
+            <source src="{% static 'img/main.mp4' %}" type="video/mp4">
+            <source src="{% static 'img/main.mp4' %}" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Saidbar -->
+        {% include "__navbar.html" %}
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            {% include "__header.html" %}
+            
+            <!-- Content -->
+            <div class="content">
+                <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+        // HTML-dan ma'lumotlarni olish
+        const chartDataElement = document.getElementById('chart-data');
+        let labels = [];
+        let dataValues = [];
+    
+        // Ma'lumotlarni tekshirish va o'qish
+        try {
+            labels = JSON.parse(chartDataElement.dataset.labels || '[]');
+            dataValues = JSON.parse(chartDataElement.dataset.values || '[]');
+        } catch (error) {
+            console.error('Ma\'lumotlarni o\'qishda xato:', error);
+            // Agar xato bo'lsa, default ma'lumotlar
+            labels = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun'];
+            dataValues = [120, 190, 300, 500, 200, 350];
+        }
+    
+        // Ma'lumotlar uzunligini tekshirish
+        if (labels.length === 0 || dataValues.length === 0 || labels.length !== dataValues.length) {
+            console.warn('Ma\'lumotlar noto\'g\'ri yoki bo\'sh. Default ma\'lumotlar ishlatiladi.');
+            labels = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun'];
+            dataValues = [120, 190, 300, 500, 200, 350];
+        }
+    
+        // Chart.js bilan bar chart yaratish
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels, // HTML-dan olingan yorliqlar
+                datasets: [{
+                    label: 'Foydalanuvchilar Soni',
+                    data: dataValues, // HTML-dan olingan ma'lumotlar
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'S o n i'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Jinoyatlar'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'S t a t i s t i k a s i'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

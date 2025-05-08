@@ -9,6 +9,7 @@ urlpatterns = [
     path('main/', IndexView.as_view(template_name='index.html'), name='index'),
     path('main/create/', CreateView.as_view(), name='create'),
     path('main/table/', TableView.as_view(), name='table'),
+    path('main/statistika/', StatistikaView.as_view(), name='statistika'),
     
     path('main/jinoyat_list/', JinoyatAllView.as_view(), name='jinoyat_list'),
     path('main/jinoyat_list/create', CreateArticleView.as_view(), name='create_article'),
